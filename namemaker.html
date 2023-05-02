@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>닉네임 생성기</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>닉네임 생성기</h1>
+    <label for="names">이름:</label>
+    <input type="text" id="names" name="names" required />
+    <label for="keywords">키워드:</label>
+    <input type="text" id="keywords" name="keywords" required />
+    <button onclick="search()">입력</button>
+    <br /><br />
+    <div id="result"></div>
+    <script>
+      function search() {
+        const api_key =
+          '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'
+        const keywords = document.getElementById('keywords').value
+        const messages = [
+          { role: 'system', content: 'You are a helpful assistant.' },
+          { role: 'user', content: names + ' 에게 ' + keywords + '에 대한 별명을 지어 줘'},
+        ]
+        const config = {
+          headers: {
+            Authorization: `Bearer ${api_key}`,
+            'Content-Type': 'application/json',
+          },
+        }
+        const data = {
+          model: 'gpt-3.5-turbo',
+          temperature: 0.5,
+          n: 1,
+          messages: messages,
+        }
+        axios
+          .post('https://api.openai.com/v1/chat/completions', data, config)
+          .then(function (response) {
+            let resultDiv = document.getElementById('result')
+            resultDiv.innerHTML = ''
+            response.data.choices.forEach(function (choice, index) {
+              resultDiv.innerHTML += `<div>${choice.message.content
+                .split('\n')
+                .join('<br/>')}</div>`
+            })
+          })
+          .catch(function (error) {
+            console.error(error)
+          })
+      }
+    </script>
+  </body>
+</html>
