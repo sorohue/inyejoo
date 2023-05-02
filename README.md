@@ -10,4 +10,6 @@
 
 <a href="https://www.github.com/gradualdev">8기 호준수</a>
 
-<img src="https://github.com/sorohue/images/blob/main/%E3%85%97%EC%A4%80%EC%88%98%ED%99%95%EB%8C%80.png" width=80 vertical-align=center>
+
+
+<img src="https://github.com/sorohue/images/blob/main/%E3%85%97%EC%A4%80%EC%88%98%ED%99%95%EB%8C%80.png" width=120>
