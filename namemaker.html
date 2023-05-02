@@ -10,13 +10,15 @@
     <input type="text" id="names" name="names" required />
     <label for="keywords">키워드:</label>
     <input type="text" id="keywords" name="keywords" required />
-    <button onclick="search()">입력</button>
+    <button id="inbtn" onclick="search()">입력</button>
     <br /><br />
     <div id="result"></div>
     <script>
       function search() {
-        const api_key =
-          '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'
+        const btn = document.getElementByID('inbtn')
+        btn.disabled = true
+        btn.innerText = '로드 중'
+        const api_key = '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'
         const keywords = document.getElementById('keywords').value
         const messages = [
           { role: 'system', content: 'You are a helpful assistant.' },
@@ -48,6 +50,8 @@
           .catch(function (error) {
             console.error(error)
           })
+        btn.disabled = false
+        btn.innerText = '입력'
       }
     </script>
   </body>
