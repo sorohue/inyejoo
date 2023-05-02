@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>닉생 성기</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>닉생 성기</h1>
+    <label for="names">이름:</label>
+    <input type="text" id="names" name="names" required />
+    <br />
+    <label for="keywords">키워드:</label>
+    <input type="text" id="keywords" name="keywords" required />
+    <button id="btn" onclick="search()">입력</button>
+    <br /><br />
+    <div id="result"></div>
+    <script>
+      function search() {
+        const api_key =
+          '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'
+        const btn = document.getElementById('btn');
+        btn.disabled = true;
+        const names = document.getElementById('names').value;
+        const keywords = document.getElementById('keywords').value;
+        const messages = [
+          { role: 'system', content: 'You are a helpful assistant.' },
+          { role: 'user', content: names + ', ' + keywords + '의 두 개 키워드로 웃긴 닉네임을 생성해줘. 단, 대한민국의 고등학교인 세종과학예술영재학교와 관련된 닉네임이어야 해. 닉네임의 조건은 다음과 같아. 1.  정확히 여섯개의 단어를 포함할 것. 2. 내가 준 두 개의 키워드를 반드시 포함할 것. 3. 이외에 전혀 관련없는 많은 단어들을 나열하여 웃기게 만들 것. 4. 첫 번째 키워드는 사람 이름이고, 두 번째 키워드는 그냥 단어이다. 첫 번째 사람의 별명을 만드는 것. 5. 마지막 단어는 명사로 끝낼 것. 6. 문장이 아닌 여러 개의 단어를 붙인 단어를 만들 것. 6. 세종과학예술영재학교에 관련되게 만들 것. 7. 별명에 특수문자와 띄어쓰기를 사용하지 말것. 가장 중요한 조건:  별명만 출력할 것. 추가적인 설명 하지 말 것.' },
+        ]
+        const config = {
+          headers: {
+            Authorization: `Bearer ${api_key}`,
+            'Content-Type': 'application/json',
+          }
+        }
+        const data = {
+          model: 'gpt-3.5-turbo',
+          temperature: 0.5,
+          n: 1,
+          messages: messages,
+        }
+        axios
+          .post('https://api.openai.com/v1/chat/completions', data, config)
+          .then(function (response) {
+            btn.disabled = false;
+            let resultDiv = document.getElementById('result')
+            resultDiv.innerHTML = ''
+            response.data.choices.forEach(function (choice, index) {
+              resultDiv.innerHTML += `<div>${choice.message.content
+                .split('\n')
+                .join('<br/>')}</div>`
+            })
+          })
+          .catch(function (error) {
+            btn.disabled = false;
+            console.error(error)
+          })
+      }
+    </script>
+  </body>
+</html>
