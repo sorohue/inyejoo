@@ -153,7 +153,7 @@
         const keywords = document.getElementById('keywords').value;
         const messages = [
           { role: 'system', content: 'You are a helpful assistant.' },
-          { role: 'user', content: 'make nickname for ' + names + '. keywords for him/her are' + keywords + '. translate these keywords and make a nickname for him/her then translate that in Korean. print only one nickname, which is translated. you should not print the original English words. no whitespace is allowed for nickname, you must include two keywords in a nickname. print without any description, and just only one nickname. for example, if two keywords are "제임스", "설사" then print "운동하고나서밥을빨리먹고소화가잘안되어설사한제임스". do not tell anything and only output the nickname.' },
+          { role: 'user', content: names + ', ' + keywords + ' 의 두 개 키워드로 웃기고 자극적인 닉네임 생성해줘. 닉네임은 한 개의 긴, 관련된 수식어 5개가 붙은 이름 형태면 좋겠어. 닉네임에 키워드가 모두 그대로 포함되어야 한다. 그리고 설명하려고 하지 말고 그냥 "닉네임 자체" 한 개만 출력해줘. 예를 들어 키워드가 "제임스", "설사"이면 "운동하고나서법을빨리먹고소화가잘안되어설사한제임스"이라고 출력되는거지. 다른 부차적인 말은 필요없어.' },
         ]
         const config = {
           headers: {
