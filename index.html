@@ -27,9 +27,9 @@
       }
      .container {
           background-image: url("https://www.sjsori.com/news/photo/201911/40411_48341_3957.jpg");
-          background-position: center 250px;
+          background-position: center 600px;
           background-repeat: no-repeat;
-          background-size: 1800px 1000px;
+          background-size: 1700px 500px;
           height: 1000px; /* 컨테이너 높이 지정 */
           background-color: black;
           overflow: hidden;
@@ -39,12 +39,100 @@
           position: relative;
           z-index: 2;
       }
+      <style>
+      /* 배경 이미지 설정 */
+      .container {
+        background-image: url("https://www.sjsori.com/news/photo/201911/40411_48341_3957.jpg");
+        background-position: center 250px;
+        background-repeat: no-repeat;
+        background-size: 1800px 1000px;
+        height: 1000px;
+        background-color: black;
+        overflow: hidden;
+      }
+      /* 로딩 중 메시지 스타일 설정 */
+      .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 30px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      /* 전체 컨테이너 스타일 설정 */
+      body {
+        padding: 0;
+        margin: 0;
+        color: #fff;
+        font-family: 'Noto Sans KR', sans-serif;
+      }
+      /* 내용 컨테이너 스타일 설정 */
+      .content {
+        padding-top: 0px;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      /* 제목 스타일 설정 */
+      h1 {
+        margin-top: 50px;
+        margin-bottom: 30px;
+        font-size: 3rem;
+        text-align: center;
+      }
+      /* 입력창 스타일 설정 */
+      label {
+        display: block;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      input {
+        padding: 10px;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: none;
+        width: 300px;
+        background-color: #ddd;
+      }
+      /* 버튼 스타일 설정 */
+      button {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1.5rem;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        margin-bottom: 30px;
+      }
+      button:hover {
+        background-color: #2980b9;
+      }
+      /* 결과창 스타일 설정 */
+      #result {
+        font-size: 2rem;
+        text-align: center;
+        margin-top: 50px;
+      }
+    </style>
     </style>
   </head>
   <body align=center>
     <div class="container">
         <div class="content">
-            <h1>SASA 닉네임 생성기</h1>
+            <h1>닉 생 성 기</h1>
     <label for="names">이름:</label>
     <input type="text" id="names" name="names" required />
     <br />
@@ -56,14 +144,12 @@
       <div class="loader"></div>
     </div>
     <br /><br />
-    <div align=center id="result"></div>
+    <div id="result"></div>
     <script>
       function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
       } 
       function search() {
-        let resultDiv = document.getElementById('result')
-        resultDiv.innerHTML = ''
         document.getElementById("loadingMessage").style.display = "block";
         const api_key =
           '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'
@@ -79,7 +165,6 @@
           headers: {
             Authorization: `Bearer ${api_key}`,
             'Content-Type': 'application/json',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
           }
         }
         const data = {
@@ -91,6 +176,8 @@
         axios
           .post('https://api.openai.com/v1/chat/completions', data, config)
           .then(function (response) {
+            let resultDiv = document.getElementById('result')
+            resultDiv.innerHTML = ''
             response.data.choices.forEach(function (choice, index) {
               resultDiv.innerHTML += `<div>${choice.message.content
                 .split('\n')
