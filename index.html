@@ -15,6 +15,9 @@
     <br /><br />
     <div id="result"></div>
     <script>
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      } 
       function search() {
         const api_key =
           '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'
@@ -41,7 +44,6 @@
         axios
           .post('https://api.openai.com/v1/chat/completions', data, config)
           .then(function (response) {
-            btn.disabled = false;
             let resultDiv = document.getElementById('result')
             resultDiv.innerHTML = ''
             response.data.choices.forEach(function (choice, index) {
@@ -49,11 +51,14 @@
                 .split('\n')
                 .join('<br/>')}</div>`
             })
+            sleep(2000)
+            btn.disabled = false;
           })
           .catch(function (error) {
-            btn.disabled = false;
             let resultDiv = document.getElementById('result')
             resultDiv.innerHTML = '사장님 여기 버그가 있어요'
+            sleep(2000)
+            btn.disabled = false;
             console.error(error)
           })
       }
