@@ -63,7 +63,7 @@
           })
           .catch(function (error) {
             let resultDiv = document.getElementById('result')
-            resultDiv.innerHTML = '사장님 여기 버그가 있어요'
+            resultDiv.innerHTML = error
             sleep(2000)
             btn.disabled = false;
             console.error(error)
