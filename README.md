@@ -2,6 +2,9 @@
 
 ChatGPT API를 이용해 자동으로 닉네임을 만들어 주는 사이트를 만들자!
 
+<h1> Requirements </h1>
+available personal ChatGPT API key
+
 # 참여 인원
 
 <a href="https://www.github.com/Kerasss"><a href="https://www.github.com/gradualdev"><img src="https://github.com/sorohue/images/blob/main/%EA%B7%A0%EB%A1%9C%ED%88%AC.gif" width=100></a>
