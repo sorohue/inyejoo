@@ -3,7 +3,7 @@
 ChatGPT API를 이용해 자동으로 닉네임을 만들어 주는 사이트를 만들자!
 
 <h1> Requirements </h1>
-available personal ChatGPT API key
+사용 가능한 ChatGPT API 키
 
 # 참여 인원
 
