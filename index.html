@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>닉 생 성 기</title>
+    <title>SASA 닉네임 생성기</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
       .loader {
@@ -20,15 +20,14 @@
           transform: rotate(360deg);
         }
       }
-
-     body {
+      body {
         padding: 0;
         margin: 0;
         color: #fff;
       }
      .container {
           background-image: url("https://www.sjsori.com/news/photo/201911/40411_48341_3957.jpg");
-          background-position: center 170px;
+          background-position: center 250px;
           background-repeat: no-repeat;
           background-size: 1800px 1000px;
           height: 1000px; /* 컨테이너 높이 지정 */
@@ -43,7 +42,9 @@
     </style>
   </head>
   <body align=center>
-    <h1>닉 생 성 기</h1>
+    <div class="container">
+        <div class="content">
+            <h1>닉 생 성 기</h1>
     <label for="names">이름:</label>
     <input type="text" id="names" name="names" required />
     <br />
@@ -108,5 +109,7 @@
           })
       }
     </script>
+        </div>
+      </div>
   </body>
 </html>
